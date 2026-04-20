@@ -11,7 +11,8 @@ jobs:
         run: |
           unzip AriachiClient.zip -d build/
           cd build
-          sed -i '' '1s/^/ARCHS = arm64 arm64e\n/' Makefile
+          echo "ARCHS = arm64 arm64e" >> Makefile
+          echo '{"Filter" = {"Bundles" = ("com.mojang.minecraftpe");};}' > AriachiClient.plist
           make package FINALPACKAGE=1
       - name: Upload
         uses: actions/upload-artifact@v4
