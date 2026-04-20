@@ -13,8 +13,10 @@ jobs:
           cd build
           echo '{"Filter" = {"Bundles" = ("com.mojang.minecraftpe");};}' > AriachiClient.plist
           make package FINALPACKAGE=1 ARCHS="arm64 arm64e"
-      - name: Upload
+      - name: Upload Result
         uses: actions/upload-artifact@v4
         with:
-          name: AriachiClient-Dylib
-          path: "**/*.dylib"
+          name: AriachiClient-Package
+          path: |
+            build/packages/*.deb
+            build/.theos/obj/debug/*.dylib
