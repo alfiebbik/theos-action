@@ -11,7 +11,8 @@ jobs:
         run: |
           unzip AriachiClient.zip -d build/
           cd build
-          echo "ARCHS = arm64 arm64e" >> Makefile
+          echo "ARCHS = arm64 arm64e" > local.mk
+          echo "include local.mk" >> Makefile
           echo '{"Filter" = {"Bundles" = ("com.mojang.minecraftpe");};}' > AriachiClient.plist
           make package FINALPACKAGE=1
       - name: Upload
