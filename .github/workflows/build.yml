@@ -17,4 +17,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: AriachiClient-Dylib
-          path: build/.theos/obj/debug/*.dylib
+          path: "**/*.dylib"
