@@ -1,0 +1,19 @@
+name: Build Ariachi
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Theos
+        uses: Randomblock1/theos-action@v1
+      - name: Compile
+        run: |
+          unzip AriachiClient.zip -d build/
+          cd build
+          make package FINALPACKAGE=1
+      - name: Upload Dylib
+        uses: actions/upload-artifact@v4
+        with:
+          name: AriachiClient-Dylib
+          path: build/.theos/obj/debug/*.dylib
